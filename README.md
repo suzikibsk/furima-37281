@@ -1,9 +1,14 @@
 # README
 
 ## users テーブル
-| name     | string | null:false |
-| email    | string | null:false,unique:true |
-| password | string | null:false |
+| name                | string     | null:false             |
+| email               | string     | null:false,unique:true |
+| encrypted_password  | string     | null:false             |
+| first_name          | string     | null:false             |
+| last_name           | string     | null:false             |
+| first_name_kana     | string     | null:false             |
+| last_name_kana      | string     | null:false             |
+| birth_day           | date       | null:false             |
 
 ### Association
 -has_one :profile, dependent: destroy
@@ -53,15 +58,15 @@
 | name           | string        | null:false                    |
 | introduction   | text          | null:false                    |
 | price          | integer       | null:false                    |
-| brand          | string        | null:false                    |
-| item_condition | integer       | null:false, foreign_key: true |
-| postage_payer  | integer       | null:false, foreign_key: true |
-| prefecture_code | integer      | null:false                    |
-| preparation_day | integer      | null:false, foreign_key: true |
-| category        | references   | null:false, foreign_key: true |
-| trading_status  | integer      | ----------------------------- |
-| seller_id       | references   | null:false, foreign_key: true |
-| buyer_id        | references   | null:false, foreign_key: true |
+| brand          | integer       | ----------------------------- |
+| item_condition | integer       | null:false                    |
+| postage_payer  | integer       | null:false                    |
+| postage_type    | integer      | null:false                    |
+| preparation_day | integer      | null:false                    |
+| category        | references   | null:false                    |
+| trading_status  | integer      | null:false                    |
+| seller          | references   | null:false                    |
+| buyer           | references   | null:false                    |
 
 ### Association
 
@@ -69,6 +74,13 @@
 -has_many :item_images, dependent: destroy
 -belongs_to :user
 -belongs_to :category
+-belongs_to_active_hash :item_condition
+-belongs_to_active_hash :preparation_day
+-belongs_to_active_hash :postage_payer
+-belongs_to_active_hash :postage_type
+-belongs_to :brand
+-belongs_to :seller, class_name: "User"
+-belongs_to :buyer, class_name: "User"
 
 ## item_images テーブル
 | src     | string      | null:false                    |
