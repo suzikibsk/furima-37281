@@ -1,9 +1,9 @@
 # README
 
 ## users テーブル
-| name                | string     | null:false,unique:true |
+| name                | string     | null:false             |
 | email               | string     | null:false,unique:true |
-| encrypted_password  | string     | null:false,unique:true |
+| encrypted_password  | string     | null:false              |
 | first_name          | string     | null:false             |
 | last_name           | string     | null:false             |
 | first_name_kana     | string     | null:false             |
@@ -13,7 +13,7 @@
 ### Association
 
 -has_many :orders, dependent: destroy
--has_many :items, dependent: destroy, foreign_key: items
+-has_many :items, dependent: destroy
 
 ## payments テーブル
 
@@ -22,7 +22,7 @@
 | city            | string     | null:false                   |
 | block           | string     | null:false                   |
 | building        | string     | ---------------------------- |
-| phone_number    | integer    | null:false                   |
+| phone_number    | string     | null:false                   |
 | orders          | references | null:false,foreign_key: true |
 
 ### Association 
