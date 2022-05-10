@@ -36,10 +36,10 @@
 | introduction       | text          | null:false                   |
 | price              | integer       | null:false                   |
 | item_status_id     | integer       | null:false                   |
-| shopping_cost_id   | integer       | null:false                   |
+| shipping_cost_id   | integer       | null:false                   |
 | category_id        | integer       | null:false                   |
 | region_id          | integer       | null:false                    |
-| shopping_date_id   | integer       | null:false                    |
+| shipping_date_id   | integer       | null:false                    |
 | user               | references    | null:false, foreign_key: true |
  
 ### Association
