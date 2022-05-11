@@ -6,6 +6,22 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user).order('created_at DESC')
   end
 
-end
+  def new
+    @item = Item.new
+  end
 
-def new
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit(:image, :name, :introduction, :category_id, :item_status_id, :shipping_cost_id, :region_id, :shipping_date_id, :price).merge(user_id: current_user.id)
+  end
+end
