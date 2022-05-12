@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   #重複処理をまとめる
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   
   
   def index
@@ -41,6 +41,16 @@ class ItemsController < ApplicationController
   end
 
   def show
+  end
+
+  def destroy
+    # ログインしているユーザーと同一であればデータを削除する
+    if @item.user_id == current_user.id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
