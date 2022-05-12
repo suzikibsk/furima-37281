@@ -29,7 +29,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
   def update
     @item.update(item_params)
     # バリデーションがOKであれば詳細画面へ
@@ -41,8 +40,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  #def show
-  #end
+  def show
+  end
 
   private
 
