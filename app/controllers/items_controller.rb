@@ -46,10 +46,9 @@ class ItemsController < ApplicationController
   def destroy
     # ログインしているユーザーと同一であればデータを削除する
     if @item.user_id == current_user.id
-      @item.destroy
-    else
-      redirect_to root_path
+         @item.destroy
     end
+   redirect_to root_path
   end
 
   private
