@@ -5,13 +5,12 @@ class OrdersController < ApplicationController
     @order_form = OrderForm.new
     # item_idを指定することで、マイグレーションファイルに対応して、リファレンス(参照)され、itemsテーブルにあるデータを取得できる
     # リファレンスでは無くintegerとしていた場合には、キーを全て指定する必要が出てくる
-    @item = Item.find(params[:item_id])
   end
 
   def create
     @order_form = OrderForm.new(order_params)
     if @order_form.valid?
-      Payjp.api_key = "sk_test_0dd54aced4e1f31ff756864d"
+      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       Payjp::Charge.create(
         amount: @item.price,           # 商品の値段
         card: order_params[:token],    # カードトークン
