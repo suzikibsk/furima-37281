@@ -34,6 +34,10 @@ RSpec.describe OrderForm, type: :model do
         @order_form.block = '旭区１２３'
         expect(@order_form).to be_valid
       end
+      it '建物名が空でも保存できる' do
+        @order_form.building = nil
+        expect(@order_form).to be_valid
+      end
       it '電話番号が11番桁以内かつハイフンなしであれば保存できる' do
         @order_form.phone_number = 12_345_678_910
         expect(@order_form).to be_valid
@@ -95,6 +99,11 @@ RSpec.describe OrderForm, type: :model do
         @order_form.phone_number = 12_345_678_910_123_111
         @order_form.valid?
         expect(@order_form.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'トークンが空だと保存できないこと' do
+        @order_form.token = nil
+        @order_form.valid?
+        expect(@order_form.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
