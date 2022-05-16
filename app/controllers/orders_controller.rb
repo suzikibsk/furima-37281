@@ -6,7 +6,6 @@ class OrdersController < ApplicationController
     # item_idを指定することで、マイグレーションファイルに対応して、リファレンス(参照)され、itemsテーブルにあるデータを取得できる
     # リファレンスでは無くintegerとしていた場合には、キーを全て指定する必要が出てくる
     @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user.id == @item.user_id
   end
 
   def create
