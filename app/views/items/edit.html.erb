@@ -78,7 +78,7 @@ app/assets/stylesheets/items/new.css %>
           発送元の地域
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:region_id, Region.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"item-prefecture"}) %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
@@ -141,7 +141,7 @@ app/assets/stylesheets/items/new.css %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
-      <%= link_to 'もどる', "#", root_path:"back-btn" %>
+      <%= link_to 'もどる', item_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
